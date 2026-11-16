@@ -52,7 +52,7 @@ public class PlayerResource {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void  (@PathParam("id") UUID id, Player player)
+    public void  updatePlayer(@PathParam("id") UUID id, Player player)
     {
         if(!state.updatePlayer(id,player))
             throw new NotFoundException("Player not found");
