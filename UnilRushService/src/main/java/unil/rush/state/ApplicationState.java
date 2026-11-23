@@ -38,15 +38,22 @@ public class ApplicationState {
         return new ArrayList<>(players.values());
     }
 
-    public Player authenticate(String username, String password)
-    {
-        for (Player p : players.values())
-        {
+    public Player authenticate(String username, String password) {
+        for (Player p : players.values()) {
             if (p.getUsername().equals(username) && p.checkPassword(password))
                 return p;
 
         }
         return null;
+    }
+
+    public boolean usernameExists(String username)
+    {
+        for (Player p : players.values()) {
+            if (p.getUsername() != null && p.getUsername().equals(username))
+                return (true);
+        }
+        return false;
     }
 
     public boolean removePlayer(UUID id) {

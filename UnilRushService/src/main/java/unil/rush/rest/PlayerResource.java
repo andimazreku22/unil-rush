@@ -45,6 +45,9 @@ public class PlayerResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Player addPlayer(Player player)
     {
+        if (state.usernameExists(player.getUsername()))
+            throw new WebApplicationException("the username is already taken", 409 );
+
         state.addPlayer(player);
         return(player);
     }
