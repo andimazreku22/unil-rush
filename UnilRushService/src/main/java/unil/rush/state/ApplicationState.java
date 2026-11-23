@@ -38,6 +38,17 @@ public class ApplicationState {
         return new ArrayList<>(players.values());
     }
 
+    public Player authenticate(String username, String password)
+    {
+        for (Player p : players.values())
+        {
+            if (p.getUsername().equals(username) && p.checkPassword(password))
+                return p;
+
+        }
+        return null;
+    }
+
     public boolean removePlayer(UUID id) {
         if (!players.containsKey(id))
             return (false);

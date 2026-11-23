@@ -7,6 +7,7 @@ import unil.rush.domain.Player;
 import unil.rush.state.ApplicationState;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Path("/players")
@@ -20,6 +21,24 @@ public class PlayerResource {
     {
         return(state.getAllPlayers());
     }
+
+    @POST
+    @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Player login(Map<String, String> loginfo)
+    {
+        Player player;
+        String user = loginfo.get("username");
+        String passwrod = loginfo.get("password") ;
+        player = state.authenticate(user,passwrod);
+        if (player == null)
+            throw new WebApplicationException("the username or password are wrong", 401 );
+        return  player;
+    }
+
+
+
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)

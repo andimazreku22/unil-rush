@@ -16,7 +16,7 @@
         <br/>
         <p:outputLabel value="Mot de passe"/>
         <br/>
-        <p:password value="#{registerBean.password}"/>
+        <p:password value="#{registerBean.password}" toggleMask="true"/>
         <br/>
         <p:outputLabel value="Faculté"/>
         <br/>
@@ -26,7 +26,9 @@
         </p:selectOneMenu>
         <br/>
         <p:commandButton value="S'inscrire" action="#{registerBean.register}" update="@form"/>
+        <br/>
         <p:outputLabel value="#{registerBean.message}"/>
+        <br/>
 
     </h:form>
 </h:body>
