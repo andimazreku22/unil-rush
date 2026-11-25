@@ -13,13 +13,16 @@
 <h:body>
     <div align="center">
     <p:panel style="width: 600px;">
-        <h1>UNIL Rush</h1>
         <h2>Menu</h2>
     </p:panel>
     <p:panel style="width: 600px;">
         <p:outputLabel value="Bonjour #{loginBean.currentPlayer.username}"/>
     <br/>
         <h:form>
+            <p:link value="Jouer" outcome="Play"/>
+            <br/>
+            <p:link value="Classement" outcome="Leaderboard"/>
+            <br/>
             <p:commandButton value="Se déconnecter" action="#{loginBean.logout}"/>
         </h:form>
     </p:panel>

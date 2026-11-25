@@ -124,6 +124,15 @@ public class ApplicationState {
         return (true);
     }
 
+    public boolean nextDay(UUID id)
+    {
+        Run test = runs.get(id);
+        if (test == null)
+            return (false);
+        test.nextDay();
+        return true;
+    }
+
     public LeaderBoard getLeaderboard() {
         return (new LeaderBoard(getAllRuns(), players));
     }

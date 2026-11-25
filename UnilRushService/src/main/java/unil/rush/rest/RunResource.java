@@ -79,7 +79,25 @@ public class RunResource {
         }
     }
 
-    @Path("/{id}/abandon")
+    @Path("/{id}/nextday")
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    public Run nextDay(@PathParam("id") UUID id) {
+        try {
+            boolean test = state.nextDay(id);
+            if (test == false)
+                throw new NotFoundException("Run not found");
+            else
+                return (getRun(id));
+        } catch (IllegalStateException e) {
+            throw new WebApplicationException("the run is finished", 409);
+        }
+    }
+
+
+
+
+        @Path("/{id}/abandon")
     @Produces(MediaType.APPLICATION_JSON)
     @POST
     public Run abandonRun(@PathParam("id") UUID id) {

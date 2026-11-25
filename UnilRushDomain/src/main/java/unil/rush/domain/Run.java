@@ -83,6 +83,13 @@ public class Run {
             status = RunStatus.LOST;
         }
     }
+    public void nextDay()
+    {
+        if (status != RunStatus.IN_PROGRESS)
+            throw new IllegalStateException("The run is finished");
+        day = day + 1;
+        score = score + 100;
+    }
 
     public void start() {
         day = 1;
@@ -109,7 +116,16 @@ public class Run {
         status = ABANDONED;
     }
 
+    public void setWarnings(int warnings) {
+        this.warnings = warnings;
+    }
+    public void setStatus(RunStatus status) {
+        this.status = status;
+    }
 
+    public void setDefeatCause(DefeatCause defeatCause) {
+        this.defeatCause = defeatCause;
+    }
 
 
 }

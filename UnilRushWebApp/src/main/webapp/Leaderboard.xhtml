@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UNIL Rush – Classement</title>
+</h:head>
+
+<h:body>
+    <div align="center">
+        <p:panel style="width: 600px;">
+            <h:graphicImage value="/images/logo.png" width="300"/>
+            <h2>Classement</h2>
+        </p:panel>
+
+        <p:panel style="width: 600px;">
+            <p:dataTable value="#{leaderboardBean.runs}" var="run" rowIndexVar="i"
+                         emptyMessage="Aucune partie terminée pour l'instant.">
+
+                <p:column headerText="Rang">
+                    <p:outputLabel value="#{i + 1}"/>
+                </p:column>
+
+                <p:column headerText="Joueur">
+                    <p:outputLabel value="#{leaderboardBean.username(run.playerID)}"/>
+                </p:column>
+
+                <p:column headerText="Score">
+                    <p:outputLabel value="#{run.score}"/>
+                </p:column>
+
+                <p:column headerText="Jour">
+                    <p:outputLabel value="#{run.day}"/>
+                </p:column>
+
+                <p:column headerText="Fin">
+                    <p:outputLabel value="#{run.defeatCause}"/>
+                </p:column>
+
+            </p:dataTable>
+            <br/>
+            <p:link value="Retour au menu" outcome="Menu"/>
+        </p:panel>
+    </div>
+</h:body>
+</html>

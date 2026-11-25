@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UNIL Rush – Jouer</title>
+</h:head>
+
+<h:body>
+    <div align="center">
+        <p:panel style="width: 600px;">
+            <h:graphicImage value="/images/logo.png" width="300"/>
+            <h2>Jouer</h2>
+        </p:panel>
+
+        <p:panel style="width: 600px;">
+            <h:form>
+                <p:commandButton value="Nouvelle partie" action="#{playBean.newRun}" update="@form"/>
+                <br/>
+                <p:outputLabel value="#{playBean.message}"/>
+                <br/>
+                <p:panel rendered="#{playBean.currentRun != null}">
+                    <p:outputLabel value="Jour : #{playBean.currentRun.day}"/>
+                    <br/>
+                    <p:outputLabel value="Score : #{playBean.currentRun.score}"/>
+                    <br/>
+                    <p:commandButton value="Jour suivant" action="#{playBean.nextDay}" update="@form"/>
+                    <br/>
+                    <p:progressBar value="#{playBean.warningPercent}"
+                                   labelTemplate="Warnings : #{playBean.currentRun.warnings} / 3"
+                                   displayOnly="true" style="width: 300px"/>
+                    <br/>
+                    <p:commandButton value="Recevoir un warning" action="#{playBean.warning}" update="@form"/>
+                    <p:outputLabel value="Statut : #{playBean.currentRun.status}"/>
+                    <br/>
+                    <br/><br/>
+                    <p:outputLabel value="Cause de la défaite :"/>
+                    <p:selectOneRadio value="#{playBean.selectedCause}">
+                        <f:selectItems value="#{playBean.causes}"/>
+                    </p:selectOneRadio>
+                    <p:commandButton value="Perdre" action="#{playBean.lose}" update="@form"/>
+                    <br/><br/>
+                    <p:commandButton value="Abandonner" action="#{playBean.abandon}" update="@form"/>
+                </p:panel>
+            </h:form>
+            <br/>
+            <p:link value="Retour au menu" outcome="Menu"/>
+        </p:panel>
+    </div>
+</h:body>
+</html>
