@@ -40,4 +40,19 @@ public class UnilRushClient {
         else
             return (null);
     }
+
+    public  Player login (String username, String password)
+    {
+        Map<String, Object> body = new HashMap<>();
+        body.put("username", username);
+        body.put("password", password);
+        Response response = playersTarget.path("login")
+                .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(body, MediaType.APPLICATION_JSON));
+        if (response.getStatus() == 200)
+            return (response.readEntity(Player.class));
+        else
+            return (null);
+    }
 }
+

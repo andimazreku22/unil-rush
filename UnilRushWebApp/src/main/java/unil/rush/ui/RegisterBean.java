@@ -33,14 +33,16 @@ public class RegisterBean implements Serializable {
         return(Faculty.values());
     }
 
-    public void register(){
+    public String register(){
         Player player = client.addPlayer(username,faculty,password);
         if (player == null) {
             message = "Inscription refusée";
+            return null;
         }
         else {
             message = "Inscription " + player.getUsername() + " réussie";
             reset();
+            return "Login?faces-redirect=true";
         }
 
     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UNIL Rush – Connexion</title>
+</h:head>
+<h:body>
+    <div align="center">
+        <p:panel style="width: 600px;">
+            <h1>UNIL Rush</h1>
+            <h2>Connexion</h2>
+        </p:panel>
+
+        <p:panel style="width: 600px;">
+            <h:form id="loginForm">
+                <table>
+                    <tr>
+                        <td style="text-align:right">
+                            <p:outputLabel value="Nom d'utilisateur"/>
+                        </td>
+                        <td style="text-align:left">
+                            <p:inputText id="username" value="#{loginBean.username}"
+                                         style="width: 300px"
+                                         required="true" requiredMessage="Le nom d'utilisateur est obligatoire."/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:right">
+                            <p:outputLabel value="Mot de passe"/>
+                        </td>
+                        <td style="text-align:left">
+                            <p:password id="password" value="#{loginBean.password}"
+                                        style="width: 300px"
+                                        toggleMask="true" feedback="false"
+                                        required="true" requiredMessage="Le mot de passe est obligatoire"/>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td></td>
+                        <td style="text-align:center">
+                            <p:commandButton value="Se connecter" action="#{loginBean.login}" update="@form"/>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td></td>
+                        <td style ="text-align:center">
+                            <p:outputLabel value="#{loginBean.message}"/>
+                        </td>
+                    </tr>
+
+                </table>
+                <p:growl id="growl" showDetail="false"/>
+            </h:form>
+        </p:panel>
+    </div>
+
+    <div align="center">
+        <p:panel style="width: 600px;">
+            <div align="left">
+                <h:outputText value="Pas encore de compte ? "/>
+                <p:link value="S'inscrire" outcome="Register"/>
+            </div>
+        </p:panel>
+    </div>
+</h:body>
+</html>
