@@ -24,18 +24,35 @@
                 <p:outputLabel value="#{playBean.message}"/>
                 <br/>
                 <p:panel rendered="#{playBean.currentRun != null}">
-                    <p:outputLabel value="Jour : #{playBean.currentRun.day}"/>
-                    <br/>
-                    <p:outputLabel value="Score : #{playBean.currentRun.score}"/>
-                    <br/>
+                    <p:panelGrid columns="3" styleClass="ui-panelgrid-blank" style="width: 100%; margin: 20px 0;">
+                        <p:card title="Jour" style="text-align: center;">
+                            <p:outputLabel value="#{playBean.currentRun.day}"
+                                           style="font-size: 1.8em; font-weight: bold;"/>
+                        </p:card>
+
+                        <p:card title="Score" style="text-align: center;">
+                            <p:outputLabel value="#{playBean.currentRun.score}"
+                                           style="font-size: 1.8em; font-weight: bold;"/>
+                        </p:card>
+
+                        <p:card title="Statut" style="text-align: center;">
+                            <p:tag value="En cours" severity="success"
+                                   rendered="#{playBean.currentRun.status eq 'IN_PROGRESS'}"/>
+                            <p:tag value="Perdue" severity="danger"
+                                   rendered="#{playBean.currentRun.status eq 'LOST'}"/>
+                            <p:tag value="Abandonnée" severity="warning"
+                                   rendered="#{playBean.currentRun.status eq 'ABANDONED'}"/>
+                        </p:card>
+                    </p:panelGrid>
                     <p:commandButton value="Jour suivant" action="#{playBean.nextDay}" update="@form"/>
                     <br/>
+                    <p:outputLabel value="Avertissements : #{playBean.currentRun.warnings} / 3"
+                                   style="display: block; font-weight: bold; margin: 16px 0 8px 0;"/>
                     <p:progressBar value="#{playBean.warningPercent}"
-                                   labelTemplate="Warnings : #{playBean.currentRun.warnings} / 3"
-                                   displayOnly="true" style="width: 300px"/>
+                                   labelTemplate=""
+                                   displayOnly="true" style="width: 300px; height: 14px;"/>
                     <br/>
-                    <p:commandButton value="Recevoir un warning" action="#{playBean.warning}" update="@form"/>
-                    <p:outputLabel value="Statut : #{playBean.currentRun.status}"/>
+                    <p:commandButton value="Recevoir un avertissement" action="#{playBean.warning}" update="@form"/>
                     <br/>
                     <br/><br/>
                     <p:outputLabel value="Cause de la défaite :"/>
